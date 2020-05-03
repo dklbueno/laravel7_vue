@@ -3,37 +3,50 @@
 @section('content')
   <pagina tamanho="12">
     <painel titulo="Lista de Artigos">
-      <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
-
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#meuModalTeste">Large modal</button>
+      <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>      
 
       <tabela-lista
         v-bind:titulos="['#','Título','Descrição']"
-        v-bind:itens="[[1,'PHP OO','Curso de PHP OO'],[2,'Vue JS','Curso de Vue JS']]"
+        v-bind:itens="{{$listaArtigos}}"
         criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="123456"
         ordem="asc" ordemcol="2"
+        modal="sim"
       ></tabela-lista>
 
     </painel>
   </pagina>
-  <modal nome="meuModalTeste">
-    <painel titulo="Adicionar">
-      <form>
+  <modal nome="adicionar" titulo="Adicionar">
+    <formulario id="formAdicionar" css="" action="#" method="put" enctype="multipart/form-data" token="">
       <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" id="titulo" placeholder="Título">
       </div>
       <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </painel>
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" placeholder="Descrição">
+      </div>      
+    </formulario>
+    <span slot="botoes">
+      <button form="formAdicionar" type="submit" class="btn btn-primary">Adicionar</button>
+    </span>
   </modal>
+  <modal nome="editar" titulo="Editar">
+    <formulario id="formEditar" css="" action="#" method="put" enctype="multipart/form-data" token="">
+      <div class="form-group">
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" id="titulo" value="" v-model="$store.state.item.titulo" placeholder="Título">
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" value="" v-model="$store.state.item.descricao" placeholder="Descrição">
+      </div>
+    </formulario>
+    <span slot="botoes">
+      <button form="formEditar" type="submit" class="btn btn-primary">Atualizar</button>
+    </span>
+  </modal>
+  <modal nome="detalhe" v-bind:titulo="$store.state.item.titulo">
+    <p>@{{$store.state.item.descricao}}</p>
+  </modal>
+  
 @endsection

@@ -7,6 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuex from 'vuex';
+Vue.use(Vuex);
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,6 +21,17 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+const store = new Vuex.Store({
+    state: {
+        item:{}
+    },
+    mutations:{
+        setItem(state,obj){
+            state.item = obj;
+        }
+    }
+});
+
 Vue.component('topo', require('./components/Topo.vue').default);
 Vue.component('painel', require('./components/Painel.vue').default);
 Vue.component('caixa', require('./components/Caixa.vue').default);
@@ -27,6 +40,7 @@ Vue.component('tabela-lista', require('./components/TabelaLista.vue').default);
 Vue.component('migalhas', require('./components/Migalhas.vue').default);
 Vue.component('modal', require('./components/modal/Modal.vue').default);
 Vue.component('modallink', require('./components/modal/ModalLink.vue').default);
+Vue.component('formulario', require('./components/Formulario.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -36,4 +50,5 @@ Vue.component('modallink', require('./components/modal/ModalLink.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store
 });
