@@ -21,27 +21,27 @@
                 <tr v-for="(item,index) in lista">
                     <td v-for="i in item">{{i}}</td>
                     <td v-if="detalhe || editar || deletar">
-                        <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
+                        <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar + item.id" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" v-bind:value="token">
                             <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-                            <modallink v-if="detalhe && modal" v-bind:item="item" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>                  
+                            <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>                  
                             <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
-                            <modallink v-if="editar && modal" v-bind:item="item" nome="editar" tipo="link" titulo=" Editar |"></modallink>                  
+                            <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" nome="editar" tipo="link" titulo=" Editar |"></modallink>                  
                             <a href="#" v-on:click="executaForm(index)">Deletar</a>
                         </form>
                         <span v-if="!token">
                             <a v-if="detalhe && !model" v-bind:href="detalhe">Detalhe |</a>
-                            <modallink v-if="detalhe && modal" v-bind:item="item" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>   
+                            <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>   
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modallink v-if="editar && modal" v-bind:item="item" nome="editar" tipo="link" titulo=" Editar |"></modallink>
+                            <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" nome="editar" tipo="link" titulo=" Editar |"></modallink>
                             <a v-if="deletar" v-bind:href="deletar">Deletar</a>
                         </span>
                         <span v-if="token && !deletar">
                             <a v-if="detalhe && !model" v-bind:href="detalhe">Detalhe |</a>
-                            <modallink v-if="detalhe && modal" v-bind:item="item" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>   
+                            <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>   
                             <a v-if="editar && !modal" v-bind:href="editar"> Editar</a>
-                            <modallink v-if="editar && modal" v-bind:item="item" nome="editar" tipo="link" titulo=" Editar"></modallink>
+                            <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" nome="editar" tipo="link" titulo=" Editar"></modallink>
                         </span>                        
                     </td>
                 </tr>
@@ -73,6 +73,7 @@
         },
         computed: {
             lista: function(){
+                let lista = this.itens.data;
                 let ordem = this.ordemAux;
                 let ordemCol = this.ordemAuxCol;
 
@@ -80,13 +81,13 @@
                 ordemCol = parseInt(ordemCol);
 
                 if(ordem == "asc") {
-                    this.itens.sort(function(a,b){
+                    lista.sort(function(a,b){
                         if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) { return 1}
                         if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) { return -1}
                         return 0;
                     })
                 } else {
-                    this.itens.sort(function(a,b){
+                    lista.sort(function(a,b){
                         if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) { return 1}
                         if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) { return -1}
                         return 0;
@@ -94,7 +95,7 @@
                 }
 
                 if(this.buscar) {
-                    return this.itens.filter(res => {
+                    return lista.filter(res => {
                         for(var k in res) {
                             if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0) {
                                 return true;
@@ -104,7 +105,7 @@
                     });
                 }
 
-                return this.itens;
+                return lista;
 
             }
         }
