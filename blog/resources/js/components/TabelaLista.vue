@@ -31,14 +31,14 @@
                             <a href="#" v-on:click="executaForm(index)">Deletar</a>
                         </form>
                         <span v-if="!token">
-                            <a v-if="detalhe && !model" v-bind:href="detalhe">Detalhe |</a>
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
                             <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>   
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
                             <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" nome="editar" tipo="link" titulo=" Editar |"></modallink>
                             <a v-if="deletar" v-bind:href="deletar">Deletar</a>
                         </span>
                         <span v-if="token && !deletar">
-                            <a v-if="detalhe && !model" v-bind:href="detalhe">Detalhe |</a>
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
                             <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" nome="detalhe" tipo="link" titulo="Detalhe |"></modallink>   
                             <a v-if="editar && !modal" v-bind:href="editar"> Editar</a>
                             <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" nome="editar" tipo="link" titulo=" Editar"></modallink>

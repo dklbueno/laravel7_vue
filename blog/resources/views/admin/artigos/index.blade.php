@@ -18,10 +18,10 @@
       <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>  
 
       <tabela-lista
-        v-bind:titulos="['#','Título','Descrição','Data']"
+        v-bind:titulos="['#','Título','Descrição','Autor','Data']"
         v-bind:itens="{{json_encode($listaArtigos)}}"
         criar="#criar" detalhe="/admin/artigos/" editar="/admin/artigos/" deletar="/admin/artigos/" token="{{ csrf_token() }}"
-        ordem="asc" ordemcol="2"
+        ordem="desc" ordemcol="0"
         modal="sim"
       ></tabela-lista>
 
@@ -43,7 +43,21 @@
       </div>
       <div class="form-group">
         <label for="conteudo">Conteúdo</label>
-        <textarea class="form-control" name="conteudo" id="" cols="30" rows="10">{{old('conteudo')}}</textarea>
+        <ckeditor id="addConteudo" name="conteudo" tag-name="textarea"
+        :config="{
+                toolbar: {
+                    items: [
+                        'bold',
+                        'italic',
+                        'link',
+                        'undo',
+                        'redo'
+                    ],
+                    height: 300
+                }                
+            }"
+        :editor="editor"
+        value="{{old('conteudo')}}"></ckeditor>
       </div>  
       <div class="form-group">
         <label for="data">Data</label>
@@ -66,8 +80,22 @@
         <input type="text" class="form-control" id="descricao" name="descricao" value="" v-model="$store.state.item.descricao" placeholder="Descrição">
       </div>
       <div class="form-group">
-        <label for="conteudo">Conteúdo</label>
-        <textarea class="form-control" name="conteudo" id="" v-model="$store.state.item.conteudo"></textarea>
+        <label for="editConteudo">Conteúdo</label>
+        <ckeditor id="editConteudo" name="conteudo" tag-name="textarea"
+        :config="{
+                toolbar: {
+                    items: [
+                        'bold',
+                        'italic',
+                        'link',
+                        'undo',
+                        'redo'
+                    ],
+                    height: 300
+                }                
+            }"
+        :editor="editor"
+        v-model="$store.state.item.conteudo"></ckeditor>
       </div>  
       <div class="form-group">
         <label for="data">Data</label>

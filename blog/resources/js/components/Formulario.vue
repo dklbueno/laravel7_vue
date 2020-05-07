@@ -9,13 +9,15 @@
 </template>
 
 <script>
+    import CKEditor from '@ckeditor/ckeditor5-vue';
+    import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
     export default {
-        props: ['css','action','method','enctype','token'],
-        data: function() {
-            return {
-                alterMethod:""
-            }
+        components: {
+            Ckeditor: CKEditor,
         },
+        props: ['css','action','method','enctype','token'],
+
         computed: {
             defineMethod: function() {
                 if(this.method.toLowerCase() == 'post' || this.method.toLowerCase() == 'get') {
@@ -27,6 +29,12 @@
                 }
 
                 return 'post';
+            }
+        },
+        data() {
+            return {
+                alterMethod:"",
+                editor: ClassicEditor
             }
         }
     }

@@ -10,6 +10,11 @@ window.Vue = require('vue');
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+Vue.use( CKEditor );
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -53,5 +58,15 @@ const app = new Vue({
     store,
     mounted: function(){
         document.getElementById('app').style.display = 'block';
+        //debugger;
+    },
+    data() {
+        return {
+            editor: ClassicEditor,
+            editorData: '<p>Content of the editor.</p>',
+            editorConfig: {
+                
+            }
+        };
     }
 });
