@@ -1931,6 +1931,45 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor', 'sm', 'md'] // filters: {
+  //     formataData: function(valor){
+  //         valor = valor.toString();
+  //         if(valor.match(/^\d{4}([./-])\d{2}\1\d{2}$/)) {
+  //             valor = valor.replace(/-/g,'');
+  //             valor = valor.substring(6)+'/'+valor.substring(4,6)+'/'+valor.substring(0,4);
+  //         }
+  //         return (valor?valor:'');
+  //     }
+  // }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Caixa.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Caixa.vue?vue&type=script&lang=js& ***!
@@ -38698,6 +38737,67 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: "col-sm-" + (_vm.sm || "6") + " col-md-" + (_vm.md || "4") },
+    [
+      _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
+        _c("img", {
+          staticClass: "card-img-top",
+          attrs: {
+            src:
+              "https://coletiva.net/files/e4da3b7fbbce2345d7772b0674a318d5/midia_foto/20170713/118815-maior_artigo_jul17.jpg",
+            alt: "Card image cap"
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("small", [
+            _vm._v(
+              _vm._s(_vm._f("formataData")(_vm.data)) +
+                " - " +
+                _vm._s(_vm.autor)
+            )
+          ]),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.titulo))]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(_vm._s(_vm.descricao))
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "btn btn-primary", attrs: { href: _vm.link } },
+            [_vm._v("Leia mais")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Caixa.vue?vue&type=template&id=09d22699&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Caixa.vue?vue&type=template&id=09d22699& ***!
@@ -38883,7 +38983,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { class: _vm.defineCor }, [
-    _c("div", { staticClass: "card-header" }, [_vm._v(_vm._s(_vm.titulo))]),
+    _vm.titulo
+      ? _c("div", { staticClass: "card-header" }, [_vm._v(_vm._s(_vm.titulo))])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [_vm._t("default")], 2)
   ])
@@ -38944,8 +39046,7 @@ var render = function() {
                 _vm.buscar = $event.target.value
               }
             }
-          }),
-          _vm._v(_vm._s(_vm.buscar) + "\n        ")
+          })
         ])
       ],
       1
@@ -38986,7 +39087,7 @@ var render = function() {
             "tr",
             [
               _vm._l(item, function(i) {
-                return _c("td", [_vm._v(_vm._s(i))])
+                return _c("td", [_vm._v(_vm._s(_vm._f("formataData")(i)))])
               }),
               _vm._v(" "),
               _vm.detalhe || _vm.editar || _vm.deletar
@@ -52756,17 +52857,28 @@ Vue.component('migalhas', __webpack_require__(/*! ./components/Migalhas.vue */ "
 Vue.component('modal', __webpack_require__(/*! ./components/modal/Modal.vue */ "./resources/js/components/modal/Modal.vue")["default"]);
 Vue.component('modallink', __webpack_require__(/*! ./components/modal/ModalLink.vue */ "./resources/js/components/modal/ModalLink.vue")["default"]);
 Vue.component('formulario', __webpack_require__(/*! ./components/Formulario.vue */ "./resources/js/components/Formulario.vue")["default"]);
+Vue.component('artigocard', __webpack_require__(/*! ./components/ArtigoCard.vue */ "./resources/js/components/ArtigoCard.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.filter('formataData', function (valor) {
+  valor = valor.toString();
+
+  if (valor.match(/^\d{4}([./-])\d{2}\1\d{2}$/)) {
+    valor = valor.replace(/-/g, '');
+    valor = valor.substring(6) + '/' + valor.substring(4, 6) + '/' + valor.substring(0, 4);
+  }
+
+  return valor ? valor : '';
+});
 var app = new Vue({
   el: '#app',
   store: store,
   mounted: function mounted() {
-    document.getElementById('app').style.display = 'block'; //debugger;
+    document.getElementById('app').style.display = 'block'; // debugger;
   },
   data: function data() {
     return {
@@ -52821,6 +52933,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/ArtigoCard.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/ArtigoCard.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArtigoCard.vue?vue&type=template&id=7be5b3a9& */ "./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&");
+/* harmony import */ var _ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ArtigoCard.vue?vue&type=script&lang=js& */ "./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ArtigoCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ArtigoCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ArtigoCard.vue?vue&type=template&id=7be5b3a9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

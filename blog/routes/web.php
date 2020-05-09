@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Artigo;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site');
-});
+Route::get('/', function (Request $req) {
+
+    $busca = (isset($req->busca) && $req->busca != "" ) ? $req->busca : '';
+
+    $lista = Artigo::listaArtigosSite(3,$busca);
+    
+    return view('site',compact('lista','busca'));
+})->name('site');
+
+Route::get('/artigo/{id}/{titulo?}', function ($id) {
+    $artigo = Artigo::find($id);
+    if($artigo) {
+        return view('artigo',compact('artigo'));
+    }
+
+    return redirect()->route('artigo');    
+})->name('artigo');
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('can:isAutor');
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->group(function(){
-    Route::resource('artigos','ArtigosController');
-    Route::resource('usuarios','UsuariosController');
-    Route::resource('autores','AutoresController');
+    Route::resource('artigos','ArtigosController')->middleware('can:isAutor');
+    Route::resource('usuarios','UsuariosController')->middleware('can:isAdmin');
+    Route::resource('autores','AutoresController')->middleware('can:isAdmin');
+    Route::resource('admins','AdminController')->middleware('can:isAdmin');
 });
     

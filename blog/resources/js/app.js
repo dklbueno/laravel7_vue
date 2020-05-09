@@ -46,6 +46,7 @@ Vue.component('migalhas', require('./components/Migalhas.vue').default);
 Vue.component('modal', require('./components/modal/Modal.vue').default);
 Vue.component('modallink', require('./components/modal/ModalLink.vue').default);
 Vue.component('formulario', require('./components/Formulario.vue').default);
+Vue.component('artigocard', require('./components/ArtigoCard.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -53,12 +54,21 @@ Vue.component('formulario', require('./components/Formulario.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.filter('formataData', function (valor) {
+    valor = valor.toString();
+    if(valor.match(/^\d{4}([./-])\d{2}\1\d{2}$/)) {
+        valor = valor.replace(/-/g,'');
+        valor = valor.substring(6)+'/'+valor.substring(4,6)+'/'+valor.substring(0,4);
+    }
+    return (valor?valor:'');
+})
+
 const app = new Vue({
     el: '#app',
     store,
     mounted: function(){
         document.getElementById('app').style.display = 'block';
-        //debugger;
+        // debugger;
     },
     data() {
         return {

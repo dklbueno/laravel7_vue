@@ -6,16 +6,22 @@
         <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
 
         <div class="row">
-            <div class="col-md-4">
+            @can('isAutor')
+            <div class="col-md-3">
             <caixa qtd="{{$totalArtigos}}" titulo="Artigos" url="{{route('artigos.index')}}" cor="orange" icone="ion ion-pie-graph"></caixa>
             </div>
-            <div class="col-md-4">
+            @endcan
+            @can('isAdmin')
+            <div class="col-md-3">
             <caixa qtd="{{$totalUsuarios}}" titulo="Usuários" url="{{route('usuarios.index')}}" cor="blue" icone="ion ion-person-stalker"></caixa>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
             <caixa qtd="{{$totalAutores}}" titulo="Autores" url="{{route('autores.index')}}" cor="red" icone="ion ion-person"></caixa>
             </div>
-
+            <div class="col-md-3">
+            <caixa qtd="{{$totalAdmins}}" titulo="Admins" url="{{route('admins.index')}}" cor="green" icone="ion ion-person"></caixa>
+            </div>
+            @endcan
         </div>
 
     </painel>

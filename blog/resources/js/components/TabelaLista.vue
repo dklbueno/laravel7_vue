@@ -6,7 +6,7 @@
             <modallink v-if="criar && modal" nome="adicionar" titulo="Criar"></modallink>
             
             <div class="form-group pull-right">
-                <input type="search" class="form-control" placeholder="Buscar" v-model="buscar"/>{{buscar}}
+                <input type="search" class="form-control" placeholder="Buscar" v-model="buscar"/>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <tr v-for="(item,index) in lista">
-                    <td v-for="i in item">{{i}}</td>
+                    <td v-for="i in item">{{i | formataData}}</td>
                     <td v-if="detalhe || editar || deletar">
                         <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar + item.id" method="post">
                             <input type="hidden" name="_method" value="DELETE">
